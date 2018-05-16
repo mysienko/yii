@@ -33,8 +33,7 @@ $user = Yii::$app->user->identity;
 <header class="<?= Yii::$app->user->isGuest?'enter':'' ?>">
   <div class="head clearfix">
     <a href="/" class="logo">
-      <img src="/images/logo.png" alt="">
-      <span>живые трансляции</span>
+      <img src="/images/logo.png" alt=""
     </a>
     <div class="head_center clearfix">
       <div class="head_broadcasting">
@@ -862,29 +861,26 @@ $user = Yii::$app->user->identity;
       </div>
     </div>
     <div class="head_right">
-
         <?php if (Yii::$app->user->isGuest) : ?>
-
           <div class="reg_sign clearfix">
             <a href="/user/login" class="sign_btn">Вход</a>
             <a href="/user/register" class="reg_btn">Регистрация</a>
           </div>
-
         <?php else : ?>
-
           <div class="head_account_block">
-
             <a href="#" class="head_account">
                     <span class="account_image">
-                        <img src="images/user_avatar.png" alt="">
-                        <?php // echo Html::img(Yii::$app->user->identity->thumb(100,100, true), ['class'=>'']);?>
+                        <img src="/images/user_avatar.png" alt="">
+                        <?php
+                        //echo Html::img(Yii::$app->user->identity->thumb(100,100, true), ['class'=>'']);
+                        ?>
                     </span>
               <span class="name"><?php echo Yii::$app->user->identity->username ?></span>
             </a>
             <div class="head_account_more">
               <ul>
                 <li class="my_page_li">
-                    <?= Html::a('Моя страница', ['/user']) ?>
+                    <?= Html::a('Моя страница', ['/user/profile']) ?>
                 </li>
                 <li class="purchase_li">
                     <?= Html::a('Покупки', ['/products']) ?>
@@ -988,7 +984,6 @@ $user = Yii::$app->user->identity;
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </div>

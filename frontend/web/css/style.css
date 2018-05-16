@@ -245,7 +245,7 @@ body {
 }
 
 .section {
-  padding: 0 30px;
+
 }
 .section .content {
   max-width: 1760px;
@@ -1194,7 +1194,7 @@ body {
   overflow: hidden;
 }
 .section .content .section_left .messages .messages_dialog .dialogs_list .dialog_item a .dialog_avatar img {
-  width: 100%;
+  height: 100%;
 }
 .section .content .section_left .messages .messages_dialog .dialogs_list .dialog_item a .dialog_info {
   margin-left: 12px;
@@ -1407,7 +1407,8 @@ body {
   border: none;
   margin-bottom: 15px;
 }
-.section .content .section_left .messages .messages_private .write_message input[type="submit"] {
+.section .content .section_left .messages .messages_private .write_message input[type="submit"],
+.section .content .section_left .messages .messages_private .write_message button{
   display: inline-block;
   width: 182px;
   height: 38px;
@@ -1424,10 +1425,10 @@ body {
   border: none;
   cursor: pointer;
 }
-.section .content .section_left .messages .messages_private .write_message input[type="submit"].attach_btn {
+.section .content .section_left .messages .messages_private .write_message .attach_btn {
   background-color: #bbc2c7;
 }
-.section .content .section_left .messages .messages_private .write_message input[type="submit"].send_btn {
+.section .content .section_left .messages .messages_private .write_message .send_btn {
   background-color: #54a1d3;
 }
 .section .content .section_left .friends .friends_list .friend_item {
@@ -5093,7 +5094,7 @@ footer .copypast p {
   text-align: left;
 }
 .with_social .auth-clients {
-  verflow: hidden;
+  overflow: hidden;
 }
 #sign_popup .social .with_social a {
   display: inline-block;
@@ -5650,7 +5651,7 @@ footer .copypast p {
   }
 
   .section {
-    padding: 0 15px;
+
   }
   .section .content .friends_top .friends_types {
     margin-right: 5px;
@@ -7411,7 +7412,7 @@ footer .copypast p {
   background-color: #fff;
 }
 
-.panel-heading {
+.user_block .panel-heading {
   border: none;
   font-size: 32px;
   color: #1d1d1d;
@@ -7421,10 +7422,19 @@ footer .copypast p {
   padding: 40px 15px;
   background-color: #e3edf4;
 }
-.control-label {
+.user_block .panel-title {
+  border: none;
+  font-size: 32px;
+  color: #1d1d1d;
+  font-family: "Geometria";
+  font-weight: 500;
+  text-align: center;
+  background-color: #e3edf4;
+}
+.user_block .control-label {
 
 }
-.form-control {
+.user_block .form-control {
   width: 100%;
   height: 62px;
   -moz-border-radius: 3px;
@@ -7441,7 +7451,7 @@ footer .copypast p {
   font-family: "Geometria";
   font-weight: 500;
 }
-.btn {
+.user_block .btn {
   min-width: 221px;
   min-height: 65px;
   -moz-border-radius: 6px;

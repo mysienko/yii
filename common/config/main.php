@@ -31,4 +31,7 @@ return [
             ],
         ],
     ],
+    'as afterAction' => [
+        'class' => '\common\components\LastVisitBehavior'
+    ],
 ];

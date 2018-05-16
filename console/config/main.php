@@ -27,6 +27,10 @@ return [
 		],
     ],
     'components' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            // 'identityClass' => 'common\models\User',
+        ],
         'log' => [
             'targets' => [
                 [

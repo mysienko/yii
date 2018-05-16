@@ -13,11 +13,15 @@ class Profile extends BaseProfile
      */
     public function rules()
     {
-        return [
+        $profileRules = [
             [['avatar', 'image'], 'safe'],
             [['image'], 'file', 'extensions'=>'jpg, gif, png'],
-
+            ['phone', 'string', 'max' => 255],
+            ['skype', 'string', 'max' => 255],
+            ['icq', 'string', 'max' => 255],
         ];
+        $rules = array_merge(parent::rules(), $profileRules);
+        return $rules;
     }
 
 

@@ -56,15 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'location') ?>
 
-                <?= $form
-                    ->field($model, 'timezone')
-                    ->dropDownList(
-                        ArrayHelper::map(
-                            Timezone::getAll(),
-                            'timezone',
-                            'name'
-                        )
-                    ); ?>
+                <?= $form->field($model, 'phone') ?>
+
+                <?= $form->field($model, 'skype') ?>
+
+                <?= $form->field($model, 'icq') ?>
 
                 <?= $form
                     ->field($model, 'gravatar_email')

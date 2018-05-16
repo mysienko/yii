@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div id="sign_popup" class="white-popup-block">
+<div id="sign_popup" class="user_block white-popup-block">
   <h2>Вход на сайт</h2>
     <?php $form = ActiveForm::begin(
         [
