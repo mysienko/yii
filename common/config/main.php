@@ -1,5 +1,6 @@
 <?php
 return [
+    'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -19,6 +20,14 @@ return [
             'admins' => ['admin'],
             'modelMap' => [
                 'User' => 'common\models\User',
+                'Profile' => 'common\models\Profile',
+            ],
+            'mailer' => [
+                'sender'                => 'no-reply@myhost.com',
+                'welcomeSubject'        => 'Welcome subject',
+                'confirmationSubject'   => 'Confirmation subject',
+                'reconfirmationSubject' => 'Email change subject',
+                'recoverySubject'       => 'Recovery subject',
             ],
         ],
     ],
