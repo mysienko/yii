@@ -21,6 +21,7 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
 $this->params['breadcrumbs'][] = $this->title;
 
 $friends = \common\models\Friends::getFriends();
+
 ?>
 
 <div id="profile" class="section section_full">
@@ -107,7 +108,10 @@ $friends = \common\models\Friends::getFriends();
         <div class="profile">
           <ul class="profile_nav clearfix">
             <li>
-                <?= Html::a('Все друзья  <span>(0)</span>', ['/friends', 'id' => $profile->user->id], ['class' => 'active']) ?>
+                <?= Html::a('Все друзья  <span>('.count($friends).')</span>', ['/friends', 'id' => $profile->user->id], ['class' => 'active']) ?>
+            </li>
+            <li>
+                <?= Html::a('Новости <span>(0)</span>', ['/news', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
             <li>
                 <?= Html::a('Трансляции <span>(0)</span>', ['/stream', 'id' => $profile->user->id], ['class' => '']) ?>

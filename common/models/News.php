@@ -1,11 +1,10 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
-use mootensai\behaviors\UUIDBehavior;
 
 /**
  * This is the base model class for table "news".
@@ -24,7 +23,6 @@ use mootensai\behaviors\UUIDBehavior;
  */
 class News extends \yii\db\ActiveRecord
 {
-    use \mootensai\relation\RelationTrait;
 
     /**
      * @inheritdoc
@@ -37,7 +35,6 @@ class News extends \yii\db\ActiveRecord
             [['body'], 'string'],
             [['title', 'description'], 'string', 'max' => 255],
             [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
         ];
     }
     
@@ -79,7 +76,7 @@ class News extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getU()
+    public function getAuthor()
     {
         return $this->hasOne(\app\models\User::className(), ['id' => 'author']);
     }
@@ -97,19 +94,7 @@ class News extends \yii\db\ActiveRecord
                 'createdByAttribute' => 'author',
                 'updatedByAttribute' => 'editor',
             ],
-            'uuid' => [
-                'class' => UUIDBehavior::className(),
-                'column' => 'id',
-            ],
         ];
     }
 
-    /**
-     * @inheritdoc
-     * @return \app\models\NewsQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\models\NewsQuery(get_called_class());
-    }
 }
