@@ -34,4 +34,19 @@ return [
     'as afterAction' => [
         'class' => '\common\components\LastVisitBehavior'
     ],
+    'components' => [
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'post'     => 'post.php',
+                        'app'       => 'app.php',
+                    ],
+                ],
+            ],
+        ],
+    ]
 ];

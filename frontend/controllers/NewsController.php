@@ -45,10 +45,7 @@ class NewsController extends Controller
      */
     public function actionIndex()
     {
-
-        //$id = Yii::$app->user->id;
         $model = Yii::$app->user->identity;
-
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -100,9 +97,10 @@ class NewsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveAll()) {
-            //return $this->redirect(['view', 'id' => $model->id]);
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            \Yii::$app->session->setFlash('success', \Yii::t('post', 'Your post has been updated'));
+            return $this->refresh();
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

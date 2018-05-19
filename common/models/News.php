@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
+
 /**
  * This is the base model class for table "news".
  *
@@ -19,7 +20,7 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $author
  * @property integer $editor
  *
- * @property \app\models\User $u
+ *
  */
 class News extends \yii\db\ActiveRecord
 {
@@ -76,9 +77,9 @@ class News extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuthor()
+    public function getAuthorModel()
     {
-        return $this->hasOne(\app\models\User::className(), ['id' => 'author']);
+        return $this->hasOne(\common\models\User::className(), ['id' => 'author']);
     }
     
 /**
