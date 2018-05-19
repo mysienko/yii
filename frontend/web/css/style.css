@@ -252,6 +252,12 @@ body {
     background-color: rgba(0, 0, 0, 0.57);
 }
 
+h1, h2 {
+    font-size: 36px;
+    color: #1b2533;
+    font-family: "Geometria";
+    font-weight: 700;
+}
 .section {
 
 }
@@ -263,6 +269,21 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.white {
+    background-color: #fff;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -moz-box-shadow: 0 2px 3px 0 rgba(18, 18, 18, 0.06);
+    -webkit-box-shadow: 0 2px 3px 0 rgba(18, 18, 18, 0.06);
+    box-shadow: 0 2px 3px 0 rgba(18, 18, 18, 0.06);
+    padding: 40px;
+    margin-bottom: 30px;
 }
 
 .friends_top {
@@ -2301,6 +2322,10 @@ body {
     margin-right: 80px;
 }
 
+.auto_filter_form {
+    margin-top: 15px;
+}
+
 .news_top .search_interesting {
     float: left;
 }
@@ -2342,7 +2367,8 @@ body {
     float: right;
 }
 
-.news_top .news_sort span {
+.news_top .news_sort span,
+.news_top .news_sort label {
     display: inline-block;
     font-size: 14px;
     color: #1b2533;
@@ -2352,6 +2378,7 @@ body {
 }
 
 .news_top .news_sort select {
+    display: inline-block;
     width: 178px;
     height: 38px;
     -moz-border-radius: 3px;
@@ -8673,6 +8700,15 @@ footer .copypast p {
     font-weight: 700;
 }
 
+.unesis_actions {
+    margin-top: 10px;
+}
 a.btn {
+    padding: 6px 12px !important;
+    border: 1px solid #2e6da4 !important;
     margin-right: 10px;
+}
+a.btn:hover {
+    padding: 6px 12px !important;
+    border: 1px solid #2e6da4 !important;
 }

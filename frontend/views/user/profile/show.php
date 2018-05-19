@@ -32,10 +32,10 @@ $friends = \common\models\Friends::getFriends();
           <div class="profile_main">
             <div class="profile_image">
                 <?php
-                   // echo Html::img($model->thumb(100,100, true), ['class'=>'img-thumbnail']);
-                   echo Html::img($profile->getAvatarUrl(100), [
-                    'class' => 'img-rounded img-responsive',
-                    'alt' => $profile->user->username]);
+                   echo Html::img($profile->user->thumb(100,100, true), [
+                       'class' => 'img-rounded img-responsive',
+                       'alt' => $profile->user->username
+                   ]);
                  ?>
             </div>
             <div class="profile_info">
@@ -111,13 +111,13 @@ $friends = \common\models\Friends::getFriends();
                 <?= Html::a('Все друзья  <span>('.count($friends).')</span>', ['/friends', 'id' => $profile->user->id], ['class' => 'active']) ?>
             </li>
             <li>
-                <?= Html::a('Новости <span>(0)</span>', ['/news', 'id' => $profile->user->id], ['class' => '']) ?>
+                <?= Html::a('Лента <span>(0)</span>', ['/news', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
             <li>
                 <?= Html::a('Трансляции <span>(0)</span>', ['/stream', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
             <li>
-              <a href="#">Товары <span>(0)</span></a>
+                <?= Html::a('Товары <span>(0)</span>', ['/store', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
           </ul>
 

@@ -215,4 +215,10 @@ $(document).ready(function () {
         $('.big_image').css('max-height',news_height);
     });
 
+    $(function() {
+        $(".auto_filter_form").change(function() {
+            $(".auto_filter_form").submit();
+        });
+    });
+
 });

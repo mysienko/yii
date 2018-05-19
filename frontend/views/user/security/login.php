@@ -24,7 +24,7 @@ $this->title = Yii::t('user', 'Sign in');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
+<?php //= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div id="sign_popup" class="user_block white-popup-block">
   <h2>Вход на сайт</h2>
