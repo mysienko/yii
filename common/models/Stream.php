@@ -6,29 +6,25 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use common\helpers\Image;
-use yz\shoppingcart\CartPositionProviderInterface;
-use yii\web\UploadedFile;
 
 /**
- * This is the base model class for table "products".
+ * This is the base model class for table "streams".
  *
  * @property integer $id
+ * @property integer $uid
  * @property string $title
  * @property string $body
  * @property string $description
- * @property string $image
- * @property string $price
- * @property string $currency
- * @property string $map
  * @property integer $created
  * @property integer $updated
  * @property integer $author
  * @property integer $editor
- * @property integer $lock
+ *
+ *
  */
-class Products extends \yii\db\ActiveRecord implements CartPositionProviderInterface
+class Stream extends \yii\db\ActiveRecord
 {
-    use \yz\shoppingcart\CartPositionTrait;
+
     public $image;
 
     /**
@@ -37,32 +33,30 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
     public function rules()
     {
         return [
-            [['title', 'body', 'description', 'price'], 'required'],
+            [['title', 'body'], 'required'],
+            [['created_at', 'updated_at', 'author', 'editor', 'rating'], 'integer'],
             [['body'], 'string'],
-            [['price', 'catalog'], 'number'],
-            [['created', 'updated', 'author', 'editor', 'lock'], 'integer'],
-            [['title', 'description', 'filename', 'map'], 'string', 'max' => 255],
-            [['currency'], 'string', 'max' => 10],
+            [['title', 'description', 'tags'], 'string', 'max' => 255],
             [['lock'], 'default', 'value' => '0'],
-            [['image'], 'safe'],
-            [['image'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['image', 'file', 'datetime'], 'safe'],
+            [['image', 'file'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'products';
+        return 'streams';
     }
 
     /**
-     *
+     * 
      * @return string
      * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock
-     *
+     * return string name of field are used to stored optimistic lock 
+     * 
      */
     public function optimisticLock() {
         return 'lock';
@@ -77,32 +71,31 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
             'id' => 'ID',
             'title' => 'Заголовок',
             'body' => 'Описание',
-            'description' => 'Краткое описание',
-            'filename' => 'Фото',
-            'price' => 'Цена',
-            'currency' => 'Валюта',
-            'catalog' => 'Каталог',
-            'map' => 'Местонахождение',
-            'updated' => 'Обновлено',
+            'description' => 'Описание',
+            'updated' => 'Дата изменения',
             'author' => 'Автор',
             'editor' => 'Редактор',
-            'lock' => 'Lock',
+            'image' => 'Фото',
+            'tags' => 'Хэштеги'
         ];
     }
-
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthorModel()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'author']);
+    }
+    
 /**
      * @inheritdoc
      * @return array mixed
-     */
+     */ 
     public function behaviors()
     {
         return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created',
-                'updatedAtAttribute' => 'updated',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
+            TimestampBehavior::className(),
             'blameable' => [
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'author',
@@ -117,7 +110,7 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
      */
     public function getImageFile()
     {
-        return isset($this->filename) ? Yii::getAlias('@webroot') . '/uploads/files/products/' . $this->filename : null;
+        return isset($this->file) ? Yii::getAlias('@webroot') . '/uploads/files/streams/' . $this->file : null;
     }
 
     /**
@@ -126,9 +119,9 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
      */
     public function getImageUrl()
     {
-        // return a default image placeholder if your source avatar is not found
-        $file = isset($this->filename) ? $this->filename : 'default.jpg';
-        return '/uploads/files/products/' . $file;
+        // return a default image placeholder if your source file is not found
+        $file = isset($this->file) ? $this->file : 'default.jpg';
+        return '/uploads/files/streams/' . $file;
     }
 
     /**
@@ -152,7 +145,7 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
         $ext = end((explode(".", $image->name)));
 
         // generate a unique file name
-        // $this->avatar = Yii::$app->security->generateRandomString().".{$ext}";
+        $this->file = Yii::$app->security->generateRandomString().".{$ext}";
 
         // the uploaded image instance
         return $image;
@@ -177,35 +170,16 @@ class Products extends \yii\db\ActiveRecord implements CartPositionProviderInter
         }
 
         // if deletion successful, reset your file attributes
-        $this->filename = null;
+        $this->file = null;
 
         return true;
     }
 
     public function thumb($width = null, $height = null, $crop = true)
     {
-        if($this->filename && ($width || $height)){
+        if($this->file && ($width || $height)){
             return Image::thumb($this->getImageUrl(), $width, $height, $crop);
         }
         return Image::thumb('/upload/no-foto.jpg', $width, $height, $crop);
     }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getCartPosition($params = [])
-    {
-        return \Yii::createObject([
-            'class' => 'common\models\ProductCartPosition',
-            'id' => $this->id,
-        ]);
-    }
-
-    public function getCost()
-    {
-       return $this->price;
-    }
-
 }

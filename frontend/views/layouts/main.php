@@ -870,9 +870,8 @@ $user = Yii::$app->user->identity;
           <div class="head_account_block">
             <a href="#" class="head_account">
                     <span class="account_image">
-                        <img src="/images/user_avatar.png" alt="">
                         <?php
-                        //echo Html::img(Yii::$app->user->identity->thumb(100,100, true), ['class'=>'']);
+                            echo Html::img(Yii::$app->user->identity->thumb(38,38, true), ['class'=>'']);
                         ?>
                     </span>
               <span class="name"><?php echo Yii::$app->user->identity->username ?></span>
@@ -891,6 +890,9 @@ $user = Yii::$app->user->identity;
                 <li class="friends_li">
                     <?= Html::a('Друзья', ['/friends']) ?>
                 </li>
+                  <li class="friends_li">
+                      <?= Html::a('Закладки', ['/bookmarks']) ?>
+                  </li>
                 <li class="photo_li">
                     <?= Html::a('Фото', ['/photo']) ?>
                 </li>
@@ -922,12 +924,12 @@ $user = Yii::$app->user->identity;
         <div class="mob_head_top">
           <a href="#" class="mob_head_account">
                     <span class="account_image">
-                        <img src="images/user_avatar.png" alt="">
+                        <?php echo Html::img(Yii::$app->user->identity->thumb(38, 38, true), ['class' => '']); ?>
                     </span>
-            <span class="name"><?//= Yii::$app->user->identity->name ?></span>
+            <span class="name"><?= Yii::$app->user->identity->name ?></span>
           </a>
           <a href="#" class="menu_close_btn">
-            <img src="images/menu_close.png" alt="">
+            <img src="/images/menu_close.png" alt="">
           </a>
         </div>
         <div class="mob_head_body">

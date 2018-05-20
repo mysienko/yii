@@ -1,10 +1,10 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use app\models\Products;
-use app\models\ProductsSearch;
+use common\models\Products;
+use common\models\ProductsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,7 +12,7 @@ use yii\web\UploadedFile;
 use yii\imagine\Image;
 use Imagine\Image\Box;
 use yz\shoppingcart\ShoppingCart;
-use app\models\ProductCartPosition;
+use common\models\ProductCartPosition;
 
 
 /**
@@ -68,8 +68,18 @@ class ProductsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        $searchModel = new ProductsSearch();
+        $params = array(
+            'ProductsSearch' => array(
+                'author' => $model->author
+            )
+        );
+        $dataProvider = $searchModel->search($params);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'other' => $dataProvider,
         ]);
     }
 
@@ -80,46 +90,26 @@ class ProductsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Products();
+
+        $model = new Products;
 
         if ($model->load(Yii::$app->request->post())) {
-          
+            $image = $model->uploadImage();
 
-            if($model->save()){
-                // get the uploaded file instance. for multiple file uploads
-                // the following data will return an array
-                $image = UploadedFile::getInstance($model, 'file');
-                if ($image) {
-                  // store the source file name
-                  $model->file = $image->name;
-                  $tmp = explode('.', $image->name);
-                  $ext = end($tmp);
-
-                  // generate a unique file name
-                  $model->image = 'products'.$model->id.".{$ext}";
-
-                  // the path to save file, you can set an uploadPath
-                  // in Yii::$app->params (as used in example below)
-                  $path = Yii::$app->params['uploadPath'] . 'products/' .  $model->image;
+            if ($model->save()) {
+                if ($image !== false) {
+                    $path = $model->getImageFile();
+                    $image->saveAs($path);
                 }
-
-                if ($image) {
-                  $image->saveAs($path);
-                }
-                return $this->redirect(['/products']);
+                return $this->redirect(['view', 'id'=>$model->id]);
             } else {
-                return $this->render('create', [
-                'model' => $model,
-            ]);
+                // error in saving model
             }
-            
-            
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
-        
+        return $this->render('create', [
+            'model'=>$model,
+        ]);
+
     }
 
     /**
@@ -176,8 +166,11 @@ class ProductsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteWithRelated();
-
+        $model = $this->findModel($id);
+        $model->delete();
+        if (!$model->deleteImage()) {
+            Yii::$app->session->setFlash('error', 'Error deleting image');
+        }
         return $this->redirect(['index']);
     }
 

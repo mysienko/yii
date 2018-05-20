@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 use yz\shoppingcart\CartPositionInterface;
@@ -27,7 +27,8 @@ use yii\base\Object;
 
     public function getPrice()
     {
-        return $this->getProduct()->cost;
+
+        return @$this->getProduct()->cost;
     }
 
     /**
@@ -35,6 +36,7 @@ use yii\base\Object;
     */
     public function getProduct()
     {
+
         if ($this->_product === null) {
             $this->_product = Products::findOne($this->id);
         }

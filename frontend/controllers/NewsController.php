@@ -43,19 +43,23 @@ class NewsController extends Controller
      * Lists all News models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id = 0)
     {
-        $model = Yii::$app->user->identity;
+        $params = Yii::$app->request->queryParams;
+        if (isset($id) && $id > 0) {
+            $params['NewsSearch']['author'] = $id;
+
+        }
+
         $searchModel = new NewsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
-            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
 
+    }
     /**
      * Displays a single News model.
      * @param integer $id

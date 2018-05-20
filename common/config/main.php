@@ -48,5 +48,14 @@ return [
                 ],
             ],
         ],
+        'formatter' => [
+            'dateFormat'     => 'php:d.m.Y',
+            'datetimeFormat' => 'php:Y-m-d H:i',
+            'timeFormat'     => 'php:H:i:s',
+        ],
+        'cart' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'my_application_cart',
+        ]
     ]
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -21,29 +21,34 @@ class CartController extends Controller
     {
         $positions = Yii::$app->cart->positions;
 
-        if (Yii::$app->request->post('quantity')) {
-            
-            foreach (Yii::$app->request->post('quantity') as $qid => $value) {
-              if (substr($qid,0,6) == 'simple') {
-                  $type = 'simple';
-                  $qid = substr($qid,6);
-              }
-              else
-                  $type = 'simple';
+        foreach ($positions as $key => $position) {
+            if (!@$position->product) {
+                unset($positions[$key]);
+            }
+        }
 
-              $md_id = md5(serialize([intval($qid), $type]));
-              $md_id = intval($qid);
-              $position = Yii::$app->cart->getPositionById($md_id);
-              if ($position) {
-                Yii::$app->cart->remove($position);
-                Yii::$app->cart->put($position,$value);
-              }
+        if (Yii::$app->request->post('quantity')) {
+            foreach (Yii::$app->request->post('quantity') as $qid => $value) {
+                if (substr($qid, 0, 6) == 'simple') {
+                    $type = 'simple';
+                    $qid = substr($qid, 6);
+                } else
+                    $type = 'simple';
+
+                $md_id = md5(serialize([intval($qid), $type]));
+                $md_id = intval($qid);
+                $position = Yii::$app->cart->getPositionById($md_id);
+                if ($position) {
+                    Yii::$app->cart->remove($position);
+                    Yii::$app->cart->put($position, $value);
+                }
             }
             Yii::$app->session->setFlash('success', 'Корзина обновлена.');
-            return $this->redirect(['/cart']); 
+            return $this->redirect(['/cart']);
         }
 
         $total = \Yii::$app->cart->getCost();
+
         //$model = new Orders;
 
         /*if (!Yii::$app->user->isGuest) {
@@ -52,12 +57,12 @@ class CartController extends Controller
             $model->name = Yii::$app->user->identity->name;
         }*/
 
-        return $this->render('cart',[
-          'positions'=>$positions,
-          'total'=>$total,
-          //'model'=>$model
+        return $this->render('cart', [
+            'positions' => $positions,
+            'total' => $total,
+            //'model'=>$model
         ]);
-        
+
     }
 
     public function actionDelete($id, $type = 'simple')
@@ -67,8 +72,8 @@ class CartController extends Controller
         $position = Yii::$app->cart->getPositionById($md_id);
         if ($position)
             Yii::$app->cart->remove($position);
-            
-        return $this->redirect(['/cart']); 
+
+        return $this->redirect(['/cart']);
     }
-    
+
 }

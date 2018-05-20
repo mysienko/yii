@@ -1,5 +1,5 @@
 <?php
-namespace app\helpers;
+namespace common\helpers;
 
 use Yii;
 use yii\web\UploadedFile;
@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 class Upload
 {
-    public static $UPLOADS_DIR = 'upload';
+    public static $UPLOADS_DIR = 'uploads';
 
     public static function file(UploadedFile $fileInstance, $dir = '', $namePostfix = true)
     {

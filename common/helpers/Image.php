@@ -1,12 +1,12 @@
 <?php
-namespace app\helpers;
+namespace common\helpers;
 
 use Yii;
 use yii\web\UploadedFile;
 use yii\web\HttpException;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
-use app\helpers\GD;
+use common\helpers\GD;
 
 class Image
 {

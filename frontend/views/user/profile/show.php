@@ -21,6 +21,10 @@ $this->title = empty($profile->name) ? Html::encode($profile->user->username) : 
 $this->params['breadcrumbs'][] = $this->title;
 
 $friends = \common\models\Friends::getFriends();
+$products = $profile->getProducts();
+$news= $profile->getNews();
+$streams = $profile->getStreams();
+
 
 ?>
 
@@ -45,10 +49,34 @@ $friends = \common\models\Friends::getFriends();
               <?php else: ?>
                 <div class="online_offline offline">не в сети <?= $profile->user->getLastVisit() ?></div>
               <?php endif; ?>
-              <div class="profile_btns clearfix">
-                  <?php if ($profile->user->id == Yii::$app->user->id) : ?>
-                      <?= Html::a('Редактировать', ['/user/settings/profile'], ['class' => 'red']) ?>
-                  <?php else : ?>
+
+                <?php if ($profile->user->id == Yii::$app->user->id) : ?>
+                    <div class="profile_add">
+                    <a href="#" class="profile_add_btn"><span>+</span>Добавить</a>
+                    <ul class="add_more">
+                        <li class="broadcasting_li">
+                            <a href="/stream/create">Трансляция</a>
+                        </li>
+                        <li class="purchase_li">
+                            <a href="/products/create">Товар</a>
+                        </li>
+                        <li class="news_li">
+                            <a href="/news/create">Новость</a>
+                        </li>
+                        <li class="video_li">
+                            <a href="/video/create">Видео</a>
+                        </li>
+                        <li class="photo_li">
+                            <a href="/photo/create">Фото</a>
+                        </li>
+                        <li class="friends_li">
+                            <a href="/friends">Друзья</a>
+                        </li>
+                    </ul>
+                </div>
+                    <?= Html::a('Редактировать', ['/user/settings/profile'], ['class' => 'edit_btn']) ?>
+                <?php else : ?>
+                <div class="profile_btns clearfix">
                       <?php
                           if (Friends::checkFriend($profile->user->id)) {
                               echo Html::a('Удалить из друзей', ['/friends/delete', 'id' => $profile->user->id] , ['class' => 'delete_friends']);
@@ -57,8 +85,9 @@ $friends = \common\models\Friends::getFriends();
                           }
                       ?>
                       <?= Html::a('Написать сообщение', ['/messages', 'id' => $profile->user->id] , ['class' => 'red']) ?>
-                  <?php endif; ?>
-              </div>
+                </div>
+                <?php endif; ?>
+
             </div>
           </div>
           <div class="profile_info_about clearfix">
@@ -111,13 +140,13 @@ $friends = \common\models\Friends::getFriends();
                 <?= Html::a('Все друзья  <span>('.count($friends).')</span>', ['/friends', 'id' => $profile->user->id], ['class' => 'active']) ?>
             </li>
             <li>
-                <?= Html::a('Лента <span>(0)</span>', ['/news', 'id' => $profile->user->id], ['class' => '']) ?>
+                <?= Html::a('Лента <span>('.count($news).')</span>', ['/news', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
             <li>
-                <?= Html::a('Трансляции <span>(0)</span>', ['/stream', 'id' => $profile->user->id], ['class' => '']) ?>
+                <?= Html::a('Трансляции <span>('.count($streams).')</span>', ['/stream', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
             <li>
-                <?= Html::a('Товары <span>(0)</span>', ['/store', 'id' => $profile->user->id], ['class' => '']) ?>
+                <?= Html::a('Товары <span>('.count($products).')</span>', ['/store', 'id' => $profile->user->id], ['class' => '']) ?>
             </li>
           </ul>
 
@@ -162,16 +191,7 @@ $friends = \common\models\Friends::getFriends();
         </div>
       </div>
       <div class="section_right">
-        <div class="event">
-          <div class="event_block">
-            <div class="user_name">
-              <span>Василий Домбровский</span>
-            </div>
-            <div class="date">15-16 августа 15:30</div>
-            <p>Конференция по новым компьютерным технологиям и защите компьютерных программ!</p>
-            <a href="#" class="connect_btn">Подключиться</a>
-          </div>
-        </div>
+          <?= \common\widgets\Ads::widget() ?>
       </div>
     </div>
   </div>

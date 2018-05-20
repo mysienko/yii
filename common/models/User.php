@@ -3,7 +3,7 @@
 namespace common\models;
 
 use dektrium\user\models\User as BaseUser;
-use app\helpers\Image;
+use common\helpers\Image;
 
 
 class User extends BaseUser
@@ -56,4 +56,5 @@ class User extends BaseUser
     {
         return $this->profile->getAvatarUrl($width);
     }
+
 }

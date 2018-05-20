@@ -181,26 +181,6 @@ $(document).ready(function () {
         $('.sorting_block').toggleClass('active');
     });
 
-
-    /*UI Range Slider*/
-    if($('div').hasClass('range_slider')) {
-        $(function() {
-            $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 1200000,
-                values: [ 100000, 1000000 ],
-                slide: function( event, ui ) {
-                    $("#_amount").val("" + ui.values[ 0 ] + " руб.");
-                    $("#amount_").val("" + ui.values[ 1 ] + " руб.");
-                }
-            });
-            $("#_amount").val("" + $( "#slider-range" ).slider( "values", 0 ) + " руб." );
-            $("#amount_").val("" + $( "#slider-range" ).slider( "values", 1 ) + " руб." );
-        });
-    }
-
-
     var goods_height = $('.goods_item_info').height();
     $('.goods_item_img').css('max-height',goods_height + 19);
     $(window).resize(function () {

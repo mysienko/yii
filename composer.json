@@ -23,7 +23,9 @@
         "yiisoft/yii2-authclient": "*",
         "yiisoft/yii2-imagine": "^2.1",
         "2amigos/yii2-ckeditor-widget": "^2.0",
-        "omnilight/yii2-shopping-cart": "*"
+        "omnilight/yii2-shopping-cart": "*",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
