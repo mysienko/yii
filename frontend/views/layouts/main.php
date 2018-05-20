@@ -37,7 +37,7 @@ $user = Yii::$app->user->identity;
     </a>
     <div class="head_center clearfix">
       <div class="head_broadcasting">
-        <a href="#" class="broadcasting_btn">Трансляции</a>
+        <a href="/stream" class="broadcasting_btn">Трансляции</a>
         <div class="broadcasting_more">
           <ul class="broadcasting_more_list">
             <li>
@@ -832,7 +832,7 @@ $user = Yii::$app->user->identity;
         </li>
         <li>
             <?php
-            // $itemsCount = \Yii::$app->cart->getCount();
+            $itemsCount = \Yii::$app->cart->getCount();
             echo Html::a('<img src="/images/basket_icon.png" alt="">', ['/cart'], ['class' => 'in']);
             ?>
         </li>
@@ -840,7 +840,7 @@ $user = Yii::$app->user->identity;
             <?= Html::a('<img src="/images/mess_icon.png" alt="">', ['/messages'], ['class' => 'in']) ?>
         </li>
         <li>
-          <a href="/user/purse">
+          <a href="/account">
             <img src="/images/user_icon.png" alt="">
           </a>
         </li>
@@ -898,7 +898,7 @@ $user = Yii::$app->user->identity;
                 </li>
                 <li class="exit_li">
                     <?php
-                    echo Html::beginForm(['/site/logout'], 'post')
+                    echo Html::beginForm(['/user/security/logout'], 'post')
                         . Html::submitButton(
                             'Выход',
                             ['class' => 'logout']
@@ -1014,6 +1014,9 @@ $user = Yii::$app->user->identity;
   </div>
 </footer>
 
+
+<?php if (Yii::$app->user->isGuest) : ?>
+<?php endif; ?>
 
 <?php $this->endBody() ?>
 </body>

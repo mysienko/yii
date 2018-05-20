@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    /*
+/*
     $('.sign_btn').magnificPopup({
         type: 'inline',
         preloader: false,
@@ -10,7 +10,7 @@ $(document).ready(function () {
         type: 'inline',
         preloader: false,
     });
-    */
+*/
 
     $('.plus').click(function(e){
         e.preventDefault();

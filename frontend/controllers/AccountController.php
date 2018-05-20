@@ -9,11 +9,11 @@ use yii\web\NotFoundHttpException;
 /**
  *
  */
-class PhotoController extends Controller
+class AccountController extends Controller
 {
     public function actionIndex($id = 0)
     {
-        return $this->render('index', [
+        return $this->render('purse', [
         ]);
 
     }
