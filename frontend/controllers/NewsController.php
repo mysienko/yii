@@ -48,7 +48,6 @@ class NewsController extends Controller
         $params = Yii::$app->request->queryParams;
         if (isset($id) && $id > 0) {
             $params['NewsSearch']['author'] = $id;
-
         }
 
         $searchModel = new NewsSearch();
