@@ -21,7 +21,7 @@ $user = Yii::$app->user->identity;
                 <div class="news_item">
                     <div class="news_user">
                         <div class="user_image">
-                            <?php echo Html::img($user->thumb(100, 100, true), ['class' => '']); ?>
+                            <?php echo Html::img($model->authorModel->thumb(100, 100, true), ['class' => '']); ?>
                         </div>
                         <div>
                             <a href="<?= Url::to(['/user/profile/show', 'id' => $user->id]) ?>"
