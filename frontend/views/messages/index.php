@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 echo '
 									<li class="dialog_item">
-										<a href="' . Url::to(['/messages', 'id' => $recipient_id]) . '">
+										<a href="' . Url::to(['/messages', 'id' => $recipient->id]) . '">
 											<div class="dialog_avatar">
 												' . Html::img($recipient->thumb(90, 100, true), ['class' => '']) . '
 											</div>
