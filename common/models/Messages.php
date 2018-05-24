@@ -126,8 +126,8 @@ class Messages extends \yii\db\ActiveRecord
         $uid = Yii::$app->user->id;
 
         $list = Yii::$app->db->createCommand(
-            'SELECT * FROM messages WHERE ((author=:uid) OR (recipient=:uid)) ORDER BY updated_at DESC',
-            [':uid' => $uid]
+            'SELECT * FROM messages WHERE ((author=:uid) AND (recipient=:recipient)) OR (author=:recipient) AND (recipient=:uid) ORDER BY updated_at DESC',
+            [':uid' => $uid, ':recipient' => $id]
         )->queryAll();
 
         $items = array();

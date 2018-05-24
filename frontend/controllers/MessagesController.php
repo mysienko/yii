@@ -64,6 +64,7 @@ class MessagesController extends Controller
         } else {
             $current_recipient = User::findOne(['id' => $id]);;
         }
+
         $messages = Messages::getThread($id);
 
 
