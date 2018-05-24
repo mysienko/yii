@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
-
+use common\helpers\Image;
 
 /**
  * This is the base model class for table "news".
@@ -96,6 +96,20 @@ class News extends \yii\db\ActiveRecord
                 'updatedByAttribute' => 'editor',
             ],
         ];
+    }
+
+    public function getFirstImage() {
+        preg_match('/<img(.*)src(.*)=(.*)"(.*)"/U', $this->body, $regexResult);
+        $src = array_pop($regexResult);
+        return $src;
+    }
+
+    public function thumb($width = null, $height = null, $crop = true)
+    {
+        if($this->getFirstImage() && ($width || $height)){
+            return Image::thumb($this->getFirstImage(), $width, $height, $crop);
+        }
+        return Image::thumb('/upload/no-foto.jpg', $width, $height, $crop);
     }
 
 }

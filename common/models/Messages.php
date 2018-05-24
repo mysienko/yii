@@ -45,7 +45,7 @@ class Messages extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      * @return array mixed
-     */ 
+     */
     public function behaviors()
     {
         return [
@@ -141,7 +141,6 @@ class Messages extends \yii\db\ActiveRecord
         return $items;
 
     }
-
 
 
 }

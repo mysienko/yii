@@ -1531,7 +1531,7 @@ h1, h2 {
     background-color: #f6f6f6;
     border: 1px solid #d9d9d9;
     padding: 25px 15px;
-    height: 640px;
+    min-height: 640px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -6139,12 +6139,12 @@ footer .copypast p {
         height: 220px;
     }
 
-    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section#my_profile .content .section_left, .section#profile .content .section_left {
+    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section .content .section_left, .section#profile .content .section_left {
         width: calc(100% - 500px);
         margin-right: 35px;
     }
 
-    .section#friends .content .section_right, .section#friends_requests .content .section_right, .section#my_profile .content .section_right, .section#profile .content .section_right {
+    .section#friends .content .section_right, .section#friends_requests .content .section_right, .section .content .section_right, .section#profile .content .section_right {
         width: 465px;
     }
 
@@ -6284,25 +6284,25 @@ footer .copypast p {
         height: 125px;
     }
 
-    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section#my_profile .content .section_left, .section#profile .content .section_left {
+    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section .content .section_left, .section#profile .content .section_left {
         width: calc(100% - 380px);
         margin-right: 20px;
     }
 
-    .section#friends .content .section_right, .section#friends_requests .content .section_right, .section#my_profile .content .section_right, .section#profile .content .section_right {
+    .section#friends .content .section_right, .section#friends_requests .content .section_right, .section .content .section_right, .section#profile .content .section_right {
         width: 360px;
     }
 
-    .section#friends .content .section_right .event .event_block, .section#friends_requests .content .section_right .event .event_block, .section#my_profile .content .section_right .event .event_block, .section#profile .content .section_right .event .event_block {
+    .section#friends .content .section_right .event .event_block, .section#friends_requests .content .section_right .event .event_block, .section .content .section_right .event .event_block, .section#profile .content .section_right .event .event_block {
         padding: 30px 20px 110px;
     }
 
-    .section#friends .content .section_right .event .event_block .date, .section#friends_requests .content .section_right .event .event_block .date, .section#my_profile .content .section_right .event .event_block .date, .section#profile .content .section_right .event .event_block .date {
+    .section#friends .content .section_right .event .event_block .date, .section#friends_requests .content .section_right .event .event_block .date, .section .content .section_right .event .event_block .date, .section#profile .content .section_right .event .event_block .date {
         font-size: 26px;
         line-height: 30px;
     }
 
-    .section#friends .content .section_right .event .event_block p, .section#friends_requests .content .section_right .event .event_block p, .section#my_profile .content .section_right .event .event_block p, .section#profile .content .section_right .event .event_block p {
+    .section#friends .content .section_right .event .event_block p, .section#friends_requests .content .section_right .event .event_block p, .section .content .section_right .event .event_block p, .section#profile .content .section_right .event .event_block p {
         font-size: 18px;
         line-height: 22px;
     }
@@ -6374,13 +6374,13 @@ footer .copypast p {
         height: 100px;
     }
 
-    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section#my_profile .content .section_left, .section#profile .content .section_left {
+    .section#friends .content .section_left, .section#friends_requests .content .section_left, .section .content .section_left, .section#profile .content .section_left {
         margin-right: 0;
         width: 100%;
         float: none;
     }
 
-    .section#friends .content .section_right, .section#friends_requests .content .section_right, .section#my_profile .content .section_right, .section#profile .content .section_right {
+    .section_right {
         display: none;
     }
 
@@ -6499,10 +6499,11 @@ footer .copypast p {
     .friends_top .search_friends input {
         height: 38px;
         width: 200px;
-    } {
-    width: calc(100% - 380px);
-    margin-right: 20px;
-}
+    }
+    .section .content .section_left{
+        width: calc(100% - 380px);
+        margin-right: 20px;
+    }
     .news_top {
         padding: 20px;
     }
@@ -6511,7 +6512,7 @@ footer .copypast p {
         padding: 20px;
     }
 
-    .section_right {
+    .section .content .section_right {
         width: 360px;
     }
 
@@ -6578,7 +6579,7 @@ footer .copypast p {
 
     .section#main_news .main_news_slide .item .min_news_item .news_image {
         margin-right: 10px;
-        height: 85px;
+        /*height: 85px;*/
     }
 
     .section#main_news .main_news_slide .item .min_news_item .news_text {
@@ -6608,7 +6609,7 @@ footer .copypast p {
     }
 
     .section#main_news .main_news_slide .item .big_news_item span em {
-        font-size: 15px;
+        font-size: 15px;*966
         line-height: 18px;
     }
 
@@ -7797,7 +7798,7 @@ footer .copypast p {
     }
 
     .section#messages .content .section_left .messages .messages_private .chat {
-        height: 300px;
+        min-height: 300px;
     }
 
     .section#messages .content .section_left .messages .messages_private .write_message input[type="submit"] {
@@ -7850,7 +7851,7 @@ footer .copypast p {
         display: none !important;
     }
 
-    .section#my_profile .content .section_left .profile_top .profile_main {
+    .section .content .section_left .profile_top .profile_main {
         padding-bottom: 120px;
     }
 
@@ -8755,6 +8756,9 @@ a.btn:hover {
     padding: 4px 6px;
     border-radius: 4px;
     float: right;
-    margin-right: 10px;
+    margin: 1px;
     font-size: 12px;
+}
+.news_item img {
+    max-width: 100%;
 }

@@ -57,9 +57,12 @@ class MessagesController extends Controller
                 $current_recipient = $recipients;
                 $current_recipient = array_shift($current_recipient);
                 $id = $current_recipient->id;
+            } else {
+                Yii::$app->session->setFlash('error', 'У Вас нет сообщений.');
+                return $this->redirect(['/user/profile/show', 'id' => $uid]);
             }
         } else {
-            $current_recipient =User::findOne(['id' => $id]);;
+            $current_recipient = User::findOne(['id' => $id]);;
         }
         $messages = Messages::getThread($id);
 
@@ -75,8 +78,6 @@ class MessagesController extends Controller
                 'current_recipient' => $current_recipient
             ]
         );
-
-
 
         $messagesProvider = new ActiveDataProvider(
             [

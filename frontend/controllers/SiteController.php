@@ -45,7 +45,46 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $list = Yii::$app->db->createCommand(
+            'SELECT * FROM news  ORDER BY created_at LIMIT 8'
+        )->queryAll();
+        $news = array();
+        foreach ($list as $item) {
+            $model = \common\models\News::findOne(['id' => $item['id']]);
+            $news[] = $model;
+        }
+
+        $list = Yii::$app->db->createCommand(
+            'SELECT * FROM streams  ORDER BY created_at LIMIT 9'
+        )->queryAll();
+        $streams = array();
+        foreach ($list as $item) {
+            $model = \common\models\Stream::findOne(['id' => $item['id']]);
+            $streams[] = $model;
+        }
+
+        $list = Yii::$app->db->createCommand(
+            'SELECT * FROM products ORDER BY created LIMIT 6'
+        )->queryAll();
+        $products = array();
+        foreach ($list as $item) {
+            $model = \common\models\Products::findOne(['id' => $item['id']]);
+            $products[] = $model;
+        }
+
+        $photos = array();
+
+        return $this->render(
+            'index',
+            [
+                'news' => $news,
+                'products' => $products,
+                'streams' => $streams,
+                'photos' => $photos,
+            ]
+        );
+
     }
 
 
