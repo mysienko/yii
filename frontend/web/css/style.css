@@ -7452,3 +7452,118 @@ footer .copypast p {
     height: auto;
   }
 }
+
+/**
+ Custom
+ */
+
+.user_block {
+  width: 100%;
+  max-width: 680px;
+  margin: 60px auto;
+  position: relative;
+  background-color: #fff;
+}
+
+.user_block .panel-heading {
+  border: none;
+  font-size: 32px;
+  color: #1d1d1d;
+  font-family: "Geometria";
+  font-weight: 500;
+  text-align: center;
+  padding: 40px 15px;
+  background-color: #e3edf4;
+}
+
+.user_block .panel-title {
+  border: none;
+  font-size: 32px;
+  color: #1d1d1d;
+  font-family: "Geometria";
+  font-weight: 500;
+  text-align: center;
+  background-color: #e3edf4;
+}
+
+.user_block .control-label {
+
+}
+
+.user_block .form-control {
+  width: 100%;
+  height: 62px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #d9d9d9;
+  margin-bottom: 12px;
+  padding: 0 22px;
+  font-size: 16px;
+  color: #828181;
+  font-family: "Geometria";
+  font-weight: 500;
+}
+
+.user_block .btn {
+  min-width: 221px;
+  min-height: 65px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #53a1d3;
+  cursor: pointer;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  font-family: "Geometria";
+  font-weight: 700;
+}
+
+.unesis_actions {
+  margin-top: 10px;
+}
+a.btn {
+  padding: 6px 12px !important;
+  border: 1px solid #2e6da4 !important;
+  margin-right: 10px;
+}
+a.btn:hover {
+  padding: 6px 12px !important;
+  border: 1px solid #2e6da4 !important;
+}
+
+.bootstrap-tagsinput {
+  display: block;
+}
+
+
+.hashtags {
+  margin-bottom: 10px;
+}
+.hashtags .date {
+  background: #EEE8D7;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 4px;
+  float: left;
+  margin-right: 10px;
+}
+.hashtags span {
+  background: #EEE8D7;
+  display: inline-block;
+  padding: 4px 6px;
+  border-radius: 4px;
+  float: right;
+  margin: 1px;
+  font-size: 12px;
+}
+.news_item img {
+  max-width: 100%;
+}
